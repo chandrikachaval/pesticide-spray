@@ -1,0 +1,24 @@
+// Relay pin for water pump
+const int relayPin = 7;
+
+// Simulated pest detection function
+bool detectPests() {
+  // Replace with actual pest detection logic
+  return random(0, 10) > 5; // Randomly simulate pest detection
+}
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+  digitalWrite(relayPin, LOW);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (detectPests()) {
+    // Activate pump if pests are detected
+    digitalWrite(relayPin, HIGH);
+    delay(5000); // Spray for 5 seconds
+    digitalWrite(relayPin, LOW);
+  }
+  delay(10000); // Check for pests every 10 seconds
+}
