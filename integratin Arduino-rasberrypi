@@ -1,0 +1,25 @@
+#arduino code
+
+void setup() {
+  Serial.begin(9600); // Start serial communication at 9600 baud rate
+}
+
+void loop() {
+  Serial.println("Hello from Arduino"); // Send data to Raspberry Pi
+  delay(1000); // Wait for 1 second
+}
+
+
+#rasberry pi code
+
+import serial
+import time
+
+# Set up serial communication
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser.flush()
+
+while True:
+    if ser.in_waiting > 0:
+        line = ser.readline().decode('utf-8').rstrip()
+        print(line)
